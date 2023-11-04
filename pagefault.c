@@ -40,7 +40,7 @@ int pageFaultsFIFO(int reference[], int n, int MAX_FRAMES) {
     for (int i = 0; i < MAX_FRAMES; i++) {
         pageFrames[i] = -1;
     }
-
+    
     int currentIndex = 0;
 
     for (int i = 0; i < n; i++) {
