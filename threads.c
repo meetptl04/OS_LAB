@@ -3,7 +3,7 @@
 #include<string.h>
 #include<stdlib.h> // used for sleep function
 #include<unistd.h>
-
+#include<sys/wait.h>
 
 // Syntax of creating thread.
 
@@ -71,15 +71,15 @@
 // void *func(void *var)
 // {
 //     sleep(2);
-//     printf("We are using thread")  ;
+//     printf("We are using thread\n")  ;
 //     return NULL;
 // }
 
 // int main()
 // {
 //     pthread_t t_id;
-//     printf("Before using threading");
-//     ptherad_creat(&t_id,NULL,func,NULL);
+//     printf("Before using threading\n");
+//     pthread_create(&t_id,NULL,func,NULL);
 //     pthread_join(t_id,NULL);
 
 //     printf("After Thread \n");
@@ -281,3 +281,48 @@
 
 //     return 0;
 // }
+
+pthread_mutex_t mutex;
+pthread_cond_t cond;
+int current = 1;
+
+void *even() {
+    for (int i = 2; i <= 10; i += 2) {
+        pthread_mutex_lock(&mutex);
+        while (current != 1) {
+            pthread_cond_wait(&cond, &mutex);
+        }
+        printf("Even Thread: %d\n", i);
+        current = 2;
+        pthread_cond_signal(&cond);
+        pthread_mutex_unlock(&mutex);
+    }
+    pthread_exit(NULL);
+}
+
+void *odd() {
+    for (int i = 1; i <= 9; i += 2) {
+        pthread_mutex_lock(&mutex);
+        while (current != 2) {
+            pthread_cond_wait(&cond, &mutex);
+        }
+        printf("Odd Thread: %d\n", i);
+        current = 1;
+        pthread_cond_signal(&cond);
+        pthread_mutex_unlock(&mutex);
+    }
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t t1, t2;
+    pthread_mutex_init(&mutex, NULL);
+    pthread_cond_init(&cond, NULL);
+    pthread_create(&t1, NULL, even, NULL);
+    pthread_create(&t2, NULL, odd, NULL);
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+    pthread_mutex_destroy(&mutex);
+    pthread_cond_destroy(&cond);
+    return 0;
+}

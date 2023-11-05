@@ -38,8 +38,7 @@ void updateQueue(struct Process processes[],
         processes[i].isComplete = true;
         ( * currentTime) += processes[i].burstTimeRemaining;
         processes[i].completionTime = ( * currentTime);
-        processes[i].waitingTime = processes[i].completionTime - processes[i].arrivalTime -
-            processes[i].burstTime;
+        processes[i].waitingTime = processes[i].completionTime - processes[i].arrivalTime - processes[i].burstTime;
         processes[i].turnaroundTime = processes[i].waitingTime + processes[i].burstTime;
         if (processes[i].waitingTime < 0)
             processes[i].waitingTime = 0;
@@ -62,8 +61,7 @@ void output(struct Process processes[],
     double avgWaitingTime = 0;
     double avgTurnaroundTime = 0;
     for (int i = 0; i < n; i++) {
-        printf("Process %d: Waiting Time: %d Turnaround Time: %d\n", processes[i].pid,
-            processes[i].waitingTime, processes[i].turnaroundTime);
+        printf("Process %d: Waiting Time: %d Turnaround Time: %d\n", processes[i].pid,processes[i].waitingTime,processes[i].turnaroundTime);
         avgWaitingTime += processes[i].waitingTime;
         avgTurnaroundTime += processes[i].turnaroundTime;
     }
