@@ -225,3 +225,59 @@
 // }
 
 
+
+// #define NUM_THREADS 3
+// #define PRINT_COUNT 3
+
+// pthread_mutex_t mutex;
+// pthread_cond_t cond[NUM_THREADS];
+// int current_thread = 0;
+
+// void *printLetter(void *letter) {
+//     char letterToPrint = *(char *)letter;
+
+//     for (int i = 0; i < PRINT_COUNT; i++) {
+//         pthread_mutex_lock(&mutex);
+
+//         while (letterToPrint - 'A' != current_thread) {
+//             pthread_cond_wait(&cond[letterToPrint - 'A'], &mutex);
+//         }
+
+//         printf("%c", letterToPrint);
+//         current_thread = (current_thread + 1) % NUM_THREADS;
+
+//         pthread_cond_signal(&cond[current_thread]);
+//         pthread_mutex_unlock(&mutex);
+//     }
+
+//     pthread_exit(NULL);
+// }
+
+// int main() {
+//     pthread_t threads[NUM_THREADS];
+//     char letters[NUM_THREADS] = {'A', 'B', 'C'};
+
+//     pthread_mutex_init(&mutex, NULL);
+
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         pthread_cond_init(&cond[i], NULL);
+//     }
+
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         pthread_create(&threads[i], NULL, printLetter, &letters[i]);
+//     }
+
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         pthread_join(threads[i], NULL);
+//     }
+
+//     pthread_mutex_destroy(&mutex);
+
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         pthread_cond_destroy(&cond[i]);
+//     }
+
+//     printf("\n");
+
+//     return 0;
+// }
