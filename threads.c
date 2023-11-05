@@ -68,21 +68,160 @@
 // Hello from thread! : 9 
 
 
-void *func(void *var)
-{
-    sleep(2);
-    printf("We are using thread")  ;
-    return NULL;
-}
+// void *func(void *var)
+// {
+//     sleep(2);
+//     printf("We are using thread")  ;
+//     return NULL;
+// }
 
-int main()
-{
-    pthread_t t_id;
-    printf("Before using threading");
-    ptherad_creat(&t_id,NULL,func,NULL);
-    pthread_join(t_id,NULL);
+// int main()
+// {
+//     pthread_t t_id;
+//     printf("Before using threading");
+//     ptherad_creat(&t_id,NULL,func,NULL);
+//     pthread_join(t_id,NULL);
 
-    printf("After Thread \n");
+//     printf("After Thread \n");
 
-    exit(0);
-}
+//     exit(0);
+// }
+
+// Parallel Thread management using Pthreads library. Implement a data parallelism using multi-threading
+
+
+// #define NUM_THREADS 4
+// #define DATA_SIZE 100
+
+// int data[DATA_SIZE];
+// int result[DATA_SIZE];
+
+// void* process_data(void* arg) {
+//     int thread_id = *(int*)arg;
+//     int chunk_size = DATA_SIZE / NUM_THREADS;
+//     int start_index = thread_id * chunk_size;
+//     int end_index = start_index + chunk_size;
+    
+//     for (int i = start_index; i < end_index; i++) {
+//         // Perform the operation on the data element
+//         result[i] = data[i] * 2;
+        
+//         // Print which thread is processing which number
+//         printf("Thread %d: Result[%d] = %d\n", thread_id, i, result[i]);
+//     }
+    
+//     pthread_exit(NULL);
+// }
+
+// int main() {
+//     pthread_t threads[NUM_THREADS];
+//     int thread_ids[NUM_THREADS];
+    
+//     // Initialize data array
+//     for (int i = 0; i < DATA_SIZE; i++) {
+//         data[i] = i + 1;
+//     }
+    
+//     // Create threads
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         thread_ids[i] = i;
+//         pthread_create(&threads[i], NULL, process_data, &thread_ids[i]);
+//     }
+    
+//     // Wait for threads to complete
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         pthread_join(threads[i], NULL);
+//     }
+    
+//     return 0;
+// }
+
+
+
+// void* printEven(void* arg) {
+//     for (int i = 2; i <= 10; i += 2) {
+//         printf("Even Thread: %d\n", i);
+//         usleep(100); // Add a small delay for demonstration purposes
+//     }
+//     pthread_exit(NULL);
+// }
+
+// void* printOdd(void* arg) {
+//     for (int i = 1; i <= 9; i += 2) {
+//         printf("Odd Thread: %d\n", i);
+//         usleep(100); // Add a small delay for demonstration purposes
+//     }
+//     pthread_exit(NULL);
+// }
+
+// int main() {
+//     pthread_t evenThread, oddThread;
+
+//     pthread_create(&evenThread, NULL, printEven, NULL);
+//     pthread_create(&oddThread, NULL, printOdd, NULL);
+
+//     pthread_join(evenThread, NULL);
+//     pthread_join(oddThread, NULL);
+
+//     return 0;
+// }
+
+
+
+
+// Thread Synchronization
+
+
+
+// #define NUM_THREADS 5
+
+// int counter = 0;
+// pthread_mutex_t mutex; // Declare a mutex variable mutex to control access to the counter
+
+// void* increment_counter(void* thread_id) {
+//     int tid = *((int*) thread_id);
+
+//     // Acquire the lock
+//     pthread_mutex_lock(&mutex);
+
+//     printf("Thread %d: Counter before increment: %d\n", tid, counter);
+//     counter++;
+//     printf("Thread %d: Counter after increment: %d\n", tid, counter);
+
+//     // Release the lock
+//     pthread_mutex_unlock(&mutex);
+
+//     pthread_exit(NULL);
+// }
+
+// int main() {
+//     pthread_t threads[NUM_THREADS];
+//     int thread_ids[NUM_THREADS];
+
+//     // Initialize the mutex
+//     pthread_mutex_init(&mutex, NULL);
+
+//     // Create threads
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         thread_ids[i] = i;
+
+//         if (pthread_create(&threads[i], NULL, increment_counter, (void*) &thread_ids[i])) {
+//             fprintf(stderr, "Error creating thread\n");
+//             return 1;
+//         }
+//     }
+
+//     // Wait for threads to finish
+//     for (int i = 0; i < NUM_THREADS; i++) {
+//         pthread_join(threads[i], NULL);
+//     }
+
+//     // Destroy the mutex
+//     pthread_mutex_destroy(&mutex);
+
+//     printf("Final counter value: %d\n", counter);
+
+//     return 0;
+// }
+
+
