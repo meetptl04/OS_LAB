@@ -108,31 +108,31 @@
 
 // ZOMBIE PROCESS : A Zombie is a process that has completed its task but still, it shows an entry in a process table.
 
-int main() {
-    pid_t p;
+// int main() {
+//     pid_t p;
 
-    printf("before fork\n");
+//     printf("before fork\n");
 
-    p = fork();
+//     p = fork();
 
-    if (p == 0) // CHILD PROCESS
-    {
-        printf("I am child having id %d\n", getpid());
-        printf("My parent's id is %d\n", getppid());
-    } 
-    else if (p>0) // PARENT PROCESS
-    {
-        wait(NULL); // THIS MAKE SURE THAT CHILD PROCESS CHANGE IT'S STATE (EXECUTING TO TERMINATE) 
-        sleep(2); //--> to see this process in ps command
-        printf("I am parent having id %d\n", getpid());
-        printf("My child's id is %d\n", p);
-    }
-    else // p<0
-    {
-        printf("ERROR");
-    }
+//     if (p == 0) // CHILD PROCESS
+//     {
+//         printf("I am child having id %d\n", getpid());
+//         printf("My parent's id is %d\n", getppid());
+//     } 
+//     else if (p>0) // PARENT PROCESS
+//     {
+//         wait(NULL); // THIS MAKE SURE THAT CHILD PROCESS CHANGE IT'S STATE (EXECUTING TO TERMINATE) 
+//         sleep(2); //--> to see this process in ps command
+//         printf("I am parent having id %d\n", getpid());
+//         printf("My child's id is %d\n", p);
+//     }
+//     else // p<0
+//     {
+//         printf("ERROR");
+//     }
 
-    printf("Common\n");
+//     printf("Common\n");
 
-    return 0;
-}
+//     return 0;
+// }
