@@ -136,3 +136,85 @@
 
 //     return 0;
 // }
+
+
+// QUESTIONS 
+
+// #include <stdio.h>
+// #include <sys/types.h>
+// #include <unistd.h>
+// #include <stdlib.h>
+
+// int Sum(int array[], int size) {
+//     int sum = 0;
+//     for (int i = 0; i < size; i++) {
+//         sum += array[i];
+//     }
+//     return sum;
+// }
+
+// double Average(int array[], int size) {
+//     int sum = Sum(array, size);
+//     return (double)sum / size;
+// }
+
+// int Max(int array[], int size) {
+//     int max = array[0];
+//     for (int i = 1; i < size; i++) {
+//         if (array[i] > max) {
+//             max = array[i];
+//         }
+//     }
+//     return max;
+// }
+
+// int main() {
+//     int n;
+//     printf("Enter the size of array: ");
+//     scanf("%d", &n);
+//     int arr[n];
+//     for (int i = 0; i < n; i++) {
+//         scanf("%d", &arr[i]);
+//     }
+
+//     pid_t pid_sum, pid_avg, pid_max;
+//     pid_sum = fork();
+
+//     if (pid_sum == 0) {
+//         int sum = Sum(arr, n);
+//         printf("Child process (sum) - Sum: %d\n", sum);
+//         exit(0);
+//     } else if (pid_sum < 0) {
+//         printf("Fork (sum) failed.\n");
+//     } else {
+//         wait(NULL);
+//     }
+
+//     pid_avg = fork();
+
+//     if (pid_avg == 0) {
+//         double avg = Average(arr, n);
+//         printf("Child process (average) - Average: %.2f\n", avg);
+//         exit(0);
+//     } else if (pid_avg < 0) {
+//         printf("Fork (average) failed.\n");
+//     } else {
+//         wait(NULL);
+//     }
+
+//     pid_max = fork();
+
+//     if (pid_max == 0) {
+//         int max = Max(arr, n);
+//         printf("Child process (max) - Maximum: %d\n", max);
+//         exit(0);
+//     } else if (pid_max < 0) {
+//         printf("Fork (max) failed.\n");
+//     } else {
+//         wait(NULL);
+//     }
+
+//     printf("All the processes have completed.\n");
+
+//     return 0;
+// }
