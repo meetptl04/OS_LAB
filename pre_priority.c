@@ -39,8 +39,7 @@ int main() {
             turnaround[smallest] = end - a[smallest];
         }
     }
-    printf("Process\tburst-time\tarrival-time\twaiting-time\tturnaround-time\tcompletion-time\tPriority\
-n");
+    printf("Process\tburst-time\tarrival-time\twaiting-time\tturnaround-time\tcompletion-time\tPriority\n");
 
     for (i = 0; i < n; i++) {
         printf("p%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", i + 1, x[i], a[i], waiting[i], turnaround[i],
