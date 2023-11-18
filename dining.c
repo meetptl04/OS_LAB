@@ -11,7 +11,7 @@
 int state[N];
 int phil[N] = { 0,1,2,3,4 };
 
-int hunger[N] = { 2,3,1,4,5 }''
+int hunger[N] = { 2,3,1,4,5 };
 
 pthread_mutex_t mutex;
 pthread_cond_t cond[N];
