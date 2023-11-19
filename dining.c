@@ -57,6 +57,7 @@ void * philosopher(void * num) {
         take_fork( * i);
         sleep(0);
         put_fork( * i);
+        
     }
 }
 int main() {
